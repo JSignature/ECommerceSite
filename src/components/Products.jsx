@@ -1,18 +1,14 @@
-import { allProducts } from '../data'
+import { useQuery, useQueryClient } from 'react-query'
+import { getProducts } from '../api/apiRoutes'
+import { useState } from 'react'
 
 const Products = () => {
-  console.log('test1')
+  const { products, setProducts } = useState('')
+  const queryClient = useQueryClient()
+
+  const { isLoading, isError, error, data } = useQuery('products', getProducts)
 
   return (
-    // <>
-    //   <h1 className="text-6xl text-red-400">Products</h1>
-    //   <ul>
-    //     {allProducts.map(product => (
-    //       <li key={product.id}>{product.title}</li>
-    //     ))}
-    //   </ul>
-    // </>
-
     <div className="bg-white">
       <div className="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
         <h2 className="text-2xl font-bold tracking-tight text-gray-900">
@@ -20,7 +16,7 @@ const Products = () => {
         </h2>
 
         <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
-          {allProducts.map(product => (
+          {data.map(product => (
             <div key={product.id} className="group relative">
               <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-white lg:aspect-none group-hover:opacity-75 lg:h-80">
                 <img
