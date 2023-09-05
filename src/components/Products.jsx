@@ -3,16 +3,23 @@ import { getProducts } from '../api/apiRoutes'
 import { useState } from 'react'
 import ProductModal from './ProductModal'
 import Filter from './Filter'
+import Sort from './Sort'
 
 const Products = () => {
-  const { products, setProducts } = useState('')
   const queryClient = useQueryClient()
   const [open, setOpen] = useState(false)
-  const [selectedProduct, setSelectedProduct] = useState({ name: 'Dina' })
+  const [selectedProduct, setSelectedProduct] = useState('')
+  const [sortedSelection, setSortedSelection] = useState('')
+  console.log(sortedSelection)
 
-  const [searchValue, setSearchValue] = useState('')
+  const [filterValue, setFilterValue] = useState('')
 
-  const { isLoading, isError, error, data } = useQuery('products', getProducts)
+  const {
+    isLoading,
+    isError,
+    error,
+    data: allProducts,
+  } = useQuery('products', getProducts)
 
   function handleClick(product) {
     setOpen(true)
@@ -25,62 +32,53 @@ const Products = () => {
     return <h1>{error.message}</h1>
   }
   let filteredProducts = null
+  let sortedProducts = null
 
-  if (searchValue) {
-    filteredProducts = data.filter(product =>
-      product.title.toLowerCase().includes(searchValue.toLowerCase())
+  if (filterValue) {
+    filteredProducts = allProducts.filter(product =>
+      product.title.toLowerCase().includes(filterValue.toLowerCase())
     )
-
-    console.log(filteredProducts)
+  }
+  if (sortedSelection) {
+    if (sortedSelection.name === 'Price Low to High') {
+      allProducts.sort((a, b) => a.price - b.price)
+    } else if (sortedSelection.name === 'Price High to Low') {
+      allProducts.sort((a, b) => b.price - a.price)
+    }
   }
 
-  let items
-  filteredProducts ? (items = filteredProducts) : (items = data)
+  let products
+  filteredProducts ? (products = filteredProducts) : (products = allProducts)
   return (
     <>
-      <Filter setSearchValue={setSearchValue} />
+      <Filter setFilterValue={setFilterValue} />
+      <Sort
+        sortedSelection={sortedSelection}
+        setSortedSelection={setSortedSelection}
+      />
       <ProductModal
         open={open}
         setOpen={setOpen}
         selectedProduct={selectedProduct}
       />
 
-      {/* <div>
-        <label
-          for="search"
-          class="block text-sm font-medium leading-6 text-gray-900"
-        >
-          Search
-        </label>
-        <div class="relative mt-2 rounded-md shadow-sm">
-          <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"></div>
-          <input
-            type="text"
-            name="search"
-            id="search"
-            class="block w-full rounded-md border-0 py-1.5 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-            placeholder="Search"
-          />
-        </div>
-      </div> */}
-
       <div className="bg-white">
         <div className="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
           <h2 className="text-2xl font-bold tracking-tight text-gray-900">
-            Customers also purchased
+            Products
           </h2>
 
           <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
-            {items.map(item => (
+            {products.map(product => (
               <div
-                key={item.id}
-                onClick={() => handleClick(item)}
+                key={product.id}
+                onClick={() => handleClick(product)}
                 className="group relative"
               >
                 <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-white lg:aspect-none group-hover:opacity-75 lg:h-80">
                   <img
-                    src={item.image}
-                    // alt={item.imageAlt}
+                    src={product.image}
+                    // alt={product.imageAlt}
                     className="h-full w-full object-contain object-center lg:h-full lg:w-full"
                   />
                 </div>
@@ -89,15 +87,15 @@ const Products = () => {
                     <h3 className="text-sm text-gray-700">
                       <a>
                         <span aria-hidden="true" className="absolute inset-0" />
-                        {item.title}
+                        {product.title}
                       </a>
                     </h3>
                     <p className="mt-1 text-sm text-gray-500">
-                      {item.category}
+                      {product.category}
                     </p>
                   </div>
                   <p className="text-sm font-medium text-gray-900">
-                    {item.price}
+                    {product.price}
                   </p>
                 </div>
               </div>

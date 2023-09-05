@@ -1,7 +1,7 @@
 import React from 'react'
 import { useState } from 'react'
 
-const Filter = ({ setSearchValue }) => {
+const Filter = ({ setFilterValue }) => {
   return (
     <>
       <div>
@@ -11,7 +11,7 @@ const Filter = ({ setSearchValue }) => {
           id="site-search"
           name="search"
           onChange={e => {
-            setSearchValue(e.target.value)
+            setFilterValue(e.target.value)
           }}
         />
       </div>
