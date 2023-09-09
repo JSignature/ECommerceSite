@@ -5,7 +5,7 @@ const Filter = ({ setFilterValue }) => {
   return (
     <>
       <div>
-        <label for="site-search">Search products:</label>
+        <label for="site-search">Search products by name:</label>
         <input
           type="search"
           id="site-search"

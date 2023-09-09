@@ -4,13 +4,16 @@ import { useState } from 'react'
 import ProductModal from './ProductModal'
 import Filter from './Filter'
 import Sort from './Sort'
+import CartModal from './CartModal'
 
 const Products = () => {
   const queryClient = useQueryClient()
-  const [open, setOpen] = useState(false)
+  const [openProdModal, setOpenProdModal] = useState(false)
+  const [openCartModal, setOpenCartModal] = useState(true)
+
   const [selectedProduct, setSelectedProduct] = useState('')
   const [sortedSelection, setSortedSelection] = useState('')
-  console.log(sortedSelection)
+  // console.log(sortedSelection)
 
   const [filterValue, setFilterValue] = useState('')
 
@@ -22,7 +25,7 @@ const Products = () => {
   } = useQuery('products', getProducts)
 
   function handleClick(product) {
-    setOpen(true)
+    setOpenProdModal(true)
     setSelectedProduct(product)
   }
 
@@ -32,7 +35,6 @@ const Products = () => {
     return <h1>{error.message}</h1>
   }
   let filteredProducts = null
-  let sortedProducts = null
 
   if (filterValue) {
     filteredProducts = allProducts.filter(product =>
@@ -57,10 +59,12 @@ const Products = () => {
         setSortedSelection={setSortedSelection}
       />
       <ProductModal
-        open={open}
-        setOpen={setOpen}
+        open={openProdModal}
+        setOpen={setOpenProdModal}
         selectedProduct={selectedProduct}
+        setOpenCartModal={setOpenCartModal}
       />
+      <CartModal open={openCartModal} setOpen={setOpenCartModal} />
 
       <div className="bg-white">
         <div className="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">

@@ -3,10 +3,20 @@ import { Dialog, Transition } from '@headlessui/react'
 import ProductOverview from './ProductOverview'
 import { ExclamationTriangleIcon } from '@heroicons/react/24/outline'
 
-export default function Example({ open, setOpen, selectedProduct }) {
-  // const [open, setOpen] = useState(false)
-
+export default function Example({
+  open,
+  setOpen,
+  selectedProduct,
+  setOpenCartModal,
+}) {
   const cancelButtonRef = useRef(null)
+
+  function handleCartClick() {
+    setOpen(false)
+    setOpenCartModal(true)
+    console.log(selectedProduct)
+    localStorage.setItem('cart', JSON.stringify(selectedProduct))
+  }
 
   return (
     <Transition.Root show={open} as={Fragment}>
@@ -70,7 +80,7 @@ export default function Example({ open, setOpen, selectedProduct }) {
                   <button
                     type="button"
                     className="inline-flex w-full justify-center rounded-md bg-blue-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-500 sm:ml-3 sm:w-auto"
-                    onClick={() => setOpen(false)}
+                    onClick={handleCartClick}
                   >
                     Add To Cart
                   </button>
