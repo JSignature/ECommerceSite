@@ -24,7 +24,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
           <Route path="/login" element={<LogIn />} />
         </Routes>
       </BrowserRouter>
-      <ReactQueryDevtools initialIsOpen />
+      {/* <ReactQueryDevtools initialIsOpen /> */}
     </QueryClientProvider>
   </React.StrictMode>
 )

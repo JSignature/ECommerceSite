@@ -7,8 +7,8 @@ const CartModal = ({ open, setOpen }) => {
 
   useEffect(() => {
     if (localStorage.getItem('cart') !== null) {
-      console.log('insdie the if')
-      setProducts([JSON.parse(localStorage.getItem('cart'))])
+      setProducts(JSON.parse(localStorage.getItem('cart')))
+      console.log(products)
     }
   }, [open])
 

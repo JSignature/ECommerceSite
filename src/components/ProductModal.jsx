@@ -14,8 +14,23 @@ export default function Example({
   function handleCartClick() {
     setOpen(false)
     setOpenCartModal(true)
-    console.log(selectedProduct)
-    localStorage.setItem('cart', JSON.stringify(selectedProduct))
+    let currentItems
+    if (localStorage.getItem('cart')) {
+      console.log('true')
+      currentItems = JSON.parse(localStorage.getItem('cart'))
+    } else {
+      console.log('false')
+      currentItems = []
+    }
+    console.log('completed the ifelse', currentItems)
+    currentItems.push(
+      selectedProduct
+      // localStorage.setItem('cart', JSON.stringify(selectedProduct))
+    )
+    console.log('after the push', currentItems)
+    localStorage.clear()
+
+    localStorage.setItem('cart', JSON.stringify(currentItems))
   }
 
   return (

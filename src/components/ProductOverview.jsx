@@ -9,8 +9,8 @@ function classNames(...classes) {
 }
 
 export default function Example({ selectedProduct }) {
-  console.log('Product Overview: ', selectedProduct)
-  console.log(selectedProduct.image)
+  // console.log('Product Overview: ', selectedProduct)
+  // console.log(selectedProduct.image)
 
   return (
     <div className="bg-white">
