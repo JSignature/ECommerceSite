@@ -9,7 +9,7 @@ import CartModal from './CartModal'
 const Products = () => {
   const queryClient = useQueryClient()
   const [openProdModal, setOpenProdModal] = useState(false)
-  const [openCartModal, setOpenCartModal] = useState(true)
+  const [openCartModal, setOpenCartModal] = useState(false)
 
   const [selectedProduct, setSelectedProduct] = useState('')
   const [sortedSelection, setSortedSelection] = useState('')

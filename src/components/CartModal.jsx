@@ -12,6 +12,14 @@ const CartModal = ({ open, setOpen }) => {
     }
   }, [open])
 
+  const handleRemove = id => {
+    // const updatedArray = products.filter(product => product.id != id)
+
+    // setProducts(updatedArray)
+    setProducts(products.filter(product => product.id != id))
+    localStorage.setItem('cart', JSON.stringify(products))
+  }
+
   return (
     <Transition.Root show={open} as={Fragment}>
       <Dialog as="div" className="relative z-10" onClose={setOpen}>
@@ -97,6 +105,9 @@ const CartModal = ({ open, setOpen }) => {
                                         <button
                                           type="button"
                                           className="font-medium text-indigo-600 hover:text-indigo-500"
+                                          onClick={() =>
+                                            handleRemove(product.id)
+                                          }
                                         >
                                           Remove
                                         </button>
