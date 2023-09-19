@@ -13,11 +13,13 @@ const CartModal = ({ open, setOpen }) => {
   }, [open])
 
   const handleRemove = id => {
-    // const updatedArray = products.filter(product => product.id != id)
-
-    // setProducts(updatedArray)
-    setProducts(products.filter(product => product.id != id))
-    localStorage.setItem('cart', JSON.stringify(products))
+    // Created a variable instead of running filter in the setter function, state was not clearing
+    // This needs to be figured out
+    console.log('Clicked Remove Button', id)
+    const updatedArray = products.filter(product => product.id != id)
+    console.log(updatedArray)
+    setProducts(updatedArray)
+    localStorage.setItem('cart', JSON.stringify(updatedArray))
   }
 
   return (
