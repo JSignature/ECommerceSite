@@ -23,8 +23,11 @@ export default function Example({
       currentItems = []
     }
     console.log('completed the ifelse', currentItems)
+    let updatedQtyProduct = selectedProduct
+    updatedQtyProduct.qty = 1
     currentItems.push(
-      selectedProduct
+      // selectedProduct
+      updatedQtyProduct
       // localStorage.setItem('cart', JSON.stringify(selectedProduct))
     )
     console.log('after the push', currentItems)

@@ -22,6 +22,12 @@ const CartModal = ({ open, setOpen }) => {
     localStorage.setItem('cart', JSON.stringify(updatedArray))
   }
 
+  const handleQty = (id, e) => {
+    //array is being mutated consider changing
+    products.find(product => product.id === id).qty = e.target.value
+    localStorage.setItem('cart', JSON.stringify(products))
+  }
+
   return (
     <Transition.Root show={open} as={Fragment}>
       <Dialog as="div" className="relative z-10" onClose={setOpen}>
@@ -99,9 +105,32 @@ const CartModal = ({ open, setOpen }) => {
                                     </p> */}
                                     </div>
                                     <div className="flex flex-1 items-end justify-between text-sm">
-                                      <p className="text-gray-500">
-                                        Qty {product.quantity}
-                                      </p>
+                                      {/* <p className="text-gray-500">
+                                        Qty {product.qty}
+                                      </p> */}
+                                      <div>
+                                        <label for="qty">Quantity:</label>
+                                        {/* <select name="qty" id="cars">
+                                          <option value="1">1</option>
+                                          <option value="2">2</option>
+                                          <option value="3" >
+                                            3
+                                          </option>
+                                          <option value="4">4</option>
+                                        </select> */}
+                                        <select
+                                          name="Qty"
+                                          onChange={e =>
+                                            handleQty(product.id, e)
+                                          }
+                                          defaultValue={product.qty}
+                                        >
+                                          <option value="1">1</option>
+                                          <option value="2">2</option>
+                                          <option value="3">3</option>
+                                          <option value="4">4</option>
+                                        </select>
+                                      </div>
 
                                       <div className="flex">
                                         <button
