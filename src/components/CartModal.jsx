@@ -104,7 +104,7 @@ const CartModal = ({ open, setOpen }) => {
                                     <div>
                                       <div className="flex justify-between text-base font-medium text-gray-900">
                                         <h3>{product.title}</h3>
-                                        <p className="ml-4">{product.price}</p>
+                                        <p className="ml-4">${product.price}</p>
                                       </div>
                                       {/* <p className="mt-1 text-sm text-gray-500">
                                       {product.color}
@@ -163,11 +163,11 @@ const CartModal = ({ open, setOpen }) => {
                       <div className="flex justify-between text-base font-medium text-gray-900">
                         <p>Subtotal</p>
                         <p>
-                          {/* {2 + 2} */}
-                          {/* {subtotals.reduce((total, item) => total + item, 0)} */}
+                          ${' '}
                           {products
                             .map(product => product.qty * product.price)
-                            .reduce((total, item) => total + item, 0)}
+                            .reduce((total, item) => total + item, 0)
+                            .toFixed(2)}
                         </p>
                       </div>
                       <p className="mt-0.5 text-sm text-gray-500">

@@ -15,9 +15,21 @@ export default function Example({
     setOpen(false)
     setOpenCartModal(true)
     let currentItems
+    console.log('handle cart click')
+
     if (localStorage.getItem('cart')) {
-      console.log('true')
-      currentItems = JSON.parse(localStorage.getItem('cart'))
+      if (
+        JSON.parse(localStorage.getItem('cart'))
+          .map(product => product.id)
+          .includes(selectedProduct.id)
+      ) {
+        console.log('inside the if')
+        const products = JSON.parse(localStorage.getItem('cart'))
+        products.find(product => product.id === selectedProduct.id).qty += 1
+        localStorage.setItem('cart', JSON.stringify(products))
+      } else {
+        currentItems = JSON.parse(localStorage.getItem('cart'))
+      }
     } else {
       console.log('false')
       currentItems = []
@@ -25,11 +37,7 @@ export default function Example({
     console.log('completed the ifelse', currentItems)
     let updatedQtyProduct = selectedProduct
     updatedQtyProduct.qty = 1
-    currentItems.push(
-      // selectedProduct
-      updatedQtyProduct
-      // localStorage.setItem('cart', JSON.stringify(selectedProduct))
-    )
+    currentItems.push(updatedQtyProduct)
     console.log('after the push', currentItems)
     localStorage.clear()
 
