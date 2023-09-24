@@ -1,8 +1,10 @@
 import { Fragment, useState, useEffect } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { XMarkIcon } from '@heroicons/react/24/outline'
+import { useNavigate } from 'react-router-dom'
 
 const CartModal = ({ open, setOpen }) => {
+  const navigate = useNavigate()
   const [products, setProducts] = useState([])
 
   useEffect(() => {
@@ -34,6 +36,10 @@ const CartModal = ({ open, setOpen }) => {
   //   })
   // }
   // console.log(subtotals)
+  const handleCheckOut = () => {
+    localStorage.clear()
+    navigate('/checkout')
+  }
   return (
     <Transition.Root show={open} as={Fragment}>
       <Dialog as="div" className="relative z-10" onClose={setOpen}>
@@ -178,6 +184,7 @@ const CartModal = ({ open, setOpen }) => {
                           <a
                             href="#"
                             className="flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700"
+                            onClick={() => handleCheckOut()}
                           >
                             Checkout
                           </a>
