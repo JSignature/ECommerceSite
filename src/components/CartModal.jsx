@@ -3,7 +3,7 @@ import { Dialog, Transition } from '@headlessui/react'
 import { XMarkIcon } from '@heroicons/react/24/outline'
 
 const CartModal = ({ open, setOpen }) => {
-  const [products, setProducts] = useState(false)
+  const [products, setProducts] = useState([])
 
   useEffect(() => {
     if (localStorage.getItem('cart') !== null) {
@@ -26,8 +26,14 @@ const CartModal = ({ open, setOpen }) => {
     //array is being mutated consider changing
     products.find(product => product.id === id).qty = e.target.value
     localStorage.setItem('cart', JSON.stringify(products))
+    setProducts(JSON.parse(localStorage.getItem('cart')))
   }
-
+  // const subtotal = () => {
+  //   const subtotals = products.map(product => {
+  //     return product.qty * product.price
+  //   })
+  // }
+  // console.log(subtotals)
   return (
     <Transition.Root show={open} as={Fragment}>
       <Dialog as="div" className="relative z-10" onClose={setOpen}>
@@ -156,7 +162,13 @@ const CartModal = ({ open, setOpen }) => {
                     <div className="border-t border-gray-200 px-4 py-6 sm:px-6">
                       <div className="flex justify-between text-base font-medium text-gray-900">
                         <p>Subtotal</p>
-                        <p>$0.00</p>
+                        <p>
+                          {/* {2 + 2} */}
+                          {/* {subtotals.reduce((total, item) => total + item, 0)} */}
+                          {products
+                            .map(product => product.qty * product.price)
+                            .reduce((total, item) => total + item, 0)}
+                        </p>
                       </div>
                       <p className="mt-0.5 text-sm text-gray-500">
                         Shipping and taxes calculated at checkout.
