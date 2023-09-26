@@ -147,7 +147,7 @@ const CartModal = ({ open, setOpen }) => {
                                       <div className="flex">
                                         <button
                                           type="button"
-                                          className="font-medium text-indigo-600 hover:text-indigo-500"
+                                          className="font-medium text-sky-600 hover:text-sky-500"
                                           onClick={() =>
                                             handleRemove(product.id)
                                           }
@@ -183,7 +183,7 @@ const CartModal = ({ open, setOpen }) => {
                         {!products ? null : (
                           <a
                             href="#"
-                            className="flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700"
+                            className="flex items-center justify-center rounded-md border border-transparent bg-sky-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-sky-700"
                             onClick={() => handleCheckOut()}
                           >
                             Checkout
@@ -194,7 +194,7 @@ const CartModal = ({ open, setOpen }) => {
                         <p>
                           <button
                             type="button"
-                            className="font-medium text-indigo-600 hover:text-indigo-500"
+                            className="font-medium text-sky-600 hover:text-sky-500"
                             onClick={() => setOpen(false)}
                           >
                             Continue Shopping

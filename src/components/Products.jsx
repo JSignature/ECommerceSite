@@ -5,6 +5,8 @@ import ProductModal from './ProductModal'
 import Filter from './Filter'
 import Sort from './Sort'
 import CartModal from './CartModal'
+import { NavLink } from 'react-router-dom'
+import NavBar from './NavBar'
 
 const Products = () => {
   const queryClient = useQueryClient()
@@ -53,11 +55,14 @@ const Products = () => {
   filteredProducts ? (products = filteredProducts) : (products = allProducts)
   return (
     <>
-      <Filter setFilterValue={setFilterValue} />
-      <Sort
-        sortedSelection={sortedSelection}
-        setSortedSelection={setSortedSelection}
-      />
+      <NavBar />
+      <div class="flex justify-around">
+        <Filter setFilterValue={setFilterValue} />
+        <Sort
+          sortedSelection={sortedSelection}
+          setSortedSelection={setSortedSelection}
+        />
+      </div>
       <ProductModal
         open={openProdModal}
         setOpen={setOpenProdModal}
@@ -99,7 +104,7 @@ const Products = () => {
                     </p>
                   </div>
                   <p className="text-sm font-medium text-gray-900">
-                    {product.price}
+                    ${product.price}
                   </p>
                 </div>
               </div>
