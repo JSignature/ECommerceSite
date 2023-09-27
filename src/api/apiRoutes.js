@@ -9,4 +9,10 @@ const getProducts = async () => {
   return res.data
 }
 
-export { getProducts }
+const login = async user => {
+  const res = await api.post('/auth/login', user)
+  console.log(res)
+  return res
+}
+
+export { getProducts, login }
