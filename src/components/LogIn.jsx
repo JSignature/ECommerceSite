@@ -1,16 +1,19 @@
 import { useState } from 'react'
 import NavBar from './NavBar'
 import { login } from '../api/apiRoutes'
+import { useNavigate } from 'react-router-dom'
 
 const LogIn = () => {
   const [username, setUsername] = useState('johnd')
   const [password, setPassword] = useState('m38rmF$')
+  const navigate = useNavigate()
 
   const handleClick = async () => {
     const user = { username, password }
 
     const { data } = await login(user)
     localStorage.setItem('token', JSON.stringify(data.token))
+    navigate('/')
   }
   return (
     <>
