@@ -1,6 +1,7 @@
 import { Fragment, useRef, useState } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import ProductOverview from './ProductOverview'
+import { useNavigate } from 'react-router-dom'
 import { ExclamationTriangleIcon } from '@heroicons/react/24/outline'
 
 export default function Example({
@@ -10,6 +11,10 @@ export default function Example({
   setOpenCartModal,
 }) {
   const cancelButtonRef = useRef(null)
+  const [isLoggedIn, setIsLoggedIn] = useState(localStorage.getItem('token'))
+  console.log('product modal is logged in', isLoggedIn)
+
+  const navigate = useNavigate()
 
   function handleCartClick() {
     setOpen(false)
@@ -103,13 +108,24 @@ export default function Example({
                   </div>
                 </div>
                 <div className="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
-                  <button
-                    type="button"
-                    className="inline-flex w-full justify-center rounded-md bg-sky-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 sm:ml-3 sm:w-auto"
-                    onClick={handleCartClick}
-                  >
-                    Add To Cart
-                  </button>
+                  {isLoggedIn ? (
+                    <button
+                      type="button"
+                      className="inline-flex w-full justify-center rounded-md bg-sky-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 sm:ml-3 sm:w-auto"
+                      onClick={handleCartClick}
+                    >
+                      Add To Cart
+                    </button>
+                  ) : (
+                    <button
+                      type="button"
+                      className="inline-flex w-full justify-center rounded-md bg-sky-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 sm:ml-3 sm:w-auto"
+                      onClick={() => navigate('/login')}
+                    >
+                      Log In
+                    </button>
+                  )}
+
                   <button
                     type="button"
                     className="mt-3 inline-flex w-full justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:mt-0 sm:w-auto"

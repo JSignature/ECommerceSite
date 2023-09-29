@@ -56,7 +56,7 @@ const Products = () => {
   return (
     <>
       <NavBar />
-      <div class="flex justify-around">
+      <div class=" flex justify-around   ">
         <Filter setFilterValue={setFilterValue} />
         <Sort
           sortedSelection={sortedSelection}
