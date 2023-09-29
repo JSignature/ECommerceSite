@@ -7,7 +7,7 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
-export default function Example() {
+export default function Example({ setOpenCartModal }) {
   const [loggedIn, setLoggedIn] = useState(localStorage.getItem('token'))
   console.log(loggedIn)
   return (
@@ -80,6 +80,7 @@ export default function Example() {
                       Log Out
                     </button>
                     <button
+                      onClick={() => setOpenCartModal(true)}
                       type="button"
                       className="relative rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
                     >

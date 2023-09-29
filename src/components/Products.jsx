@@ -55,7 +55,7 @@ const Products = () => {
   filteredProducts ? (products = filteredProducts) : (products = allProducts)
   return (
     <>
-      <NavBar />
+      <NavBar setOpenCartModal={setOpenCartModal} />
       <div class=" flex justify-around   ">
         <Filter setFilterValue={setFilterValue} />
         <Sort
