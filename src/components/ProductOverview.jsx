@@ -9,9 +9,6 @@ function classNames(...classes) {
 }
 
 export default function Example({ selectedProduct }) {
-  // console.log('Product Overview: ', selectedProduct)
-  // console.log(selectedProduct.image)
-
   return (
     <div className="bg-white">
       <div className="pt-6">
@@ -47,12 +44,6 @@ export default function Example({ selectedProduct }) {
                 <p className="sr-only">
                   {selectedProduct.rating.rate} out of 5 stars
                 </p>
-                {/* <a
-                  href={reviews.href}
-                  className="ml-3 text-sm font-medium text-indigo-600 hover:text-indigo-500"
-                >
-                  {reviews.totalCount} reviews
-                </a> */}
               </div>
             </div>
           </div>

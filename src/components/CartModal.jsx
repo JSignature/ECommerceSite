@@ -30,12 +30,7 @@ const CartModal = ({ open, setOpen }) => {
     localStorage.setItem('cart', JSON.stringify(products))
     setProducts(JSON.parse(localStorage.getItem('cart')))
   }
-  // const subtotal = () => {
-  //   const subtotals = products.map(product => {
-  //     return product.qty * product.price
-  //   })
-  // }
-  // console.log(subtotals)
+
   const handleCheckOut = () => {
     localStorage.clear()
     navigate('/checkout')
@@ -112,24 +107,11 @@ const CartModal = ({ open, setOpen }) => {
                                         <h3>{product.title}</h3>
                                         <p className="ml-4">${product.price}</p>
                                       </div>
-                                      {/* <p className="mt-1 text-sm text-gray-500">
-                                      {product.color}
-                                    </p> */}
                                     </div>
                                     <div className="flex flex-1 items-end justify-between text-sm">
-                                      {/* <p className="text-gray-500">
-                                        Qty {product.qty}
-                                      </p> */}
                                       <div>
                                         <label for="qty">Quantity:</label>
-                                        {/* <select name="qty" id="cars">
-                                          <option value="1">1</option>
-                                          <option value="2">2</option>
-                                          <option value="3" >
-                                            3
-                                          </option>
-                                          <option value="4">4</option>
-                                        </select> */}
+
                                         <select
                                           name="Qty"
                                           onChange={e =>

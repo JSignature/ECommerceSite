@@ -2,16 +2,10 @@ import { Fragment, useState } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
 
-const navigation = [
-  { name: 'Home', href: '/', current: true },
-  // { name: 'Login', href: '/login', current: false },
-  // { name: 'Sign up', href: '#', current: false },
-]
+const navigation = [{ name: 'Home', href: '/', current: true }]
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
-
-// localStorage.setItem('cart', JSON.stringify(products))
 
 export default function Example() {
   const [loggedIn, setLoggedIn] = useState(localStorage.getItem('token'))
@@ -23,7 +17,6 @@ export default function Example() {
           <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
             <div className="relative flex h-16 items-center justify-between">
               <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
-                {/* Mobile menu button*/}
                 <Disclosure.Button className="relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
                   <span className="absolute -inset-0.5" />
                   <span className="sr-only">Open main menu</span>
@@ -70,7 +63,6 @@ export default function Example() {
                     className={
                       'text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium'
                     }
-                    // aria-current={item.current ? 'page' : undefined}
                   >
                     {'Login'}
                   </a>
