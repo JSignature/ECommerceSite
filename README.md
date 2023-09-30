@@ -1,8 +1,16 @@
-# React + Vite
+ECommerce store project
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Front end application using the fake store api to simulate a back end. Project features a log in function, persistant cart saved to local storage, search and filter functions. Tanstack Query an Axios are set up for API calls to the back end. Styling using Tailwind CSS.
 
-Currently, two official plugins are available:
+Technologies Used:
+-React
+-Vite
+-GitHub
+-Axios
+-Tanstack Query (React Query)
+-Tailwind CSS
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Hosted on AWS https://main.d1z7vdccddqyi2.amplifyapp.com/
+
+License
+Distributed under the MIT License. See LICENSE.txt for more information.
